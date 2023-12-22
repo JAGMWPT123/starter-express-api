@@ -1,7 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
-const { createServer } = require('https');
+const { createServer } = require('node:https');
 //import http from 'node:http';
 const { Server } = require('socket.io');
 //const { setupWebSocket } = require('./socket.cjs');
@@ -29,16 +29,16 @@ const PORT = 5000; // Choose a suitable port
 const rooms = []; // Array to store room objects
 
 
-// // user websocket
-// setupWebSocket()
-// io.on('connection', (socket) => {
-//   //console.log(socket.time)
-//   console.log('A user connected');
+// user websocket
+setupWebSocket()
+io.on('connection', (socket) => {
+  //console.log(socket.time)
+  console.log('A user connected');
 
-//   socket.on('userDisconnect', () => {
-//     console.log('User disconnected');
-//     // Handle user disconnect, e.g., remove the user from the room
-//   });
+  socket.on('userDisconnect', () => {
+    console.log('User disconnected');
+    // Handle user disconnect, e.g., remove the user from the room
+  });
 
 //   socket.on('joinRoom', (data) => {
 //     const { roomId, username } =  data;
@@ -63,7 +63,7 @@ const rooms = []; // Array to store room objects
 //       // Handle the case when the room is not found
 //     }
 //   });
-// });
+});
 // Function to generate a unique room ID
 function generateRoomId() {
   return Math.random().toString(36).substr(2, 6).toUpperCase();
